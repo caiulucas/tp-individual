@@ -240,7 +240,7 @@ void complex_functional_test() {
 
   ExponentialFlow f(1, "f");
   ExponentialFlow t(2, "t");
-  ExponentialFlow u(exponential_flow_with_various_systems3, "u");
+  ExponentialFlow u(3, "u");
   ExponentialFlow v(4, "v");
   ExponentialFlow g(5, "g");
   ExponentialFlow r(6, "r");
