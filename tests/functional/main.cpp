@@ -192,7 +192,7 @@ void two_flows_one_system() {
   f2.set_source(&s1);
 }
 
-void exponential_flow_with_two_systems() {
+void exponential_functional_test() {
   Model model(1, "model_1");
   System s1(1, "pop1", 100.0);
   System s2(2, "pop2", 0.0);
@@ -211,7 +211,7 @@ void exponential_flow_with_two_systems() {
   assert(fabs((round((s2.get_value() * 10000)) - 10000 * 63.3968)) < 0.0001);
 }
 
-void logistical_flow_with_two_systems() {
+void logistical_functional_test() {
   Model model(1, "model_1");
   System s1(1, "pop1", 100.0);
   System s2(2, "pop2", 10.0);
@@ -230,7 +230,7 @@ void logistical_flow_with_two_systems() {
   assert(fabs((round((s2.get_value() * 10000)) - 10000 * 21.7833)) < 0.0001);
 }
 
-void exponential_flow_with_various_systems() {
+void complex_functional_test() {
   Model model(1, "acceptance_3");
   System q1(1, "q1", 100.0);
   System q2(2, "q2", 0.0);
@@ -240,7 +240,7 @@ void exponential_flow_with_various_systems() {
 
   ExponentialFlow f(1, "f");
   ExponentialFlow t(2, "t");
-  ExponentialFlow u(3, "u");
+  ExponentialFlow u(exponential_flow_with_various_systems3, "u");
   ExponentialFlow v(4, "v");
   ExponentialFlow g(5, "g");
   ExponentialFlow r(6, "r");
@@ -296,9 +296,9 @@ int main() {
   various_systems_and_flows();
   cyclic_model();
 
-  exponential_flow_with_two_systems();
-  logistical_flow_with_two_systems();
-  exponential_flow_with_various_systems();
+  exponential_functional_test();
+  logistical_functional_test();
+  complex_functional_test();
 
   return EXIT_SUCCESS;
 }
