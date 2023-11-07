@@ -226,6 +226,7 @@ void logistical_functional_test() {
 
   model.execute(0, 100, 1);
 
+  // TODO - Fix this test (value * 10000 truncated to int)
   assert(fabs((round((s1.get_value() * 10000)) - 10000 * 88.2167)) < 0.0001);
   assert(fabs((round((s2.get_value() * 10000)) - 10000 * 21.7833)) < 0.0001);
 }

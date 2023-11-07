@@ -15,7 +15,7 @@ public:
   /**
    * Constructor that creates a new System.
    */
-  System(){};
+  System();
 
   /**
    * Constructor that creates a new System.
@@ -24,55 +24,40 @@ public:
    * @param title The title of the System.
    * @param value The value of the System.
    */
-  System(int id, string title, double value)
-      : m_id(id), m_title(title), m_value(value) {}
+  System(int id, string title, double value);
 
   /**
    * Copy constructor that creates a new System.
    *
    * @param other The System to copy.
    */
-  System(const System &other) {
-    if (this != &other) {
-      m_id = other.m_id;
-      m_title = other.m_title;
-      m_value = other.m_value;
-    }
-  }
-
+  System(const System &other);
   /**
    * Copy assignment operator that copies a System.
    *
    * @param other The System to copy.
    * @return The copied System.
    */
-  System &operator=(const System &other) {
-    if (this != &other) {
-      m_id = other.m_id;
-      m_title = other.m_title;
-      m_value = other.m_value;
-    }
-    return *this;
-  }
+  System &operator=(const System &other);
 
   /**
    * Destructor that destroys a System.
    */
-  virtual ~System(){};
+  virtual ~System();
 
-  int get_id() const { return m_id; }
+  int get_id() const;
 
   /**
    * Gets the id of the System.
    *
    * @return The id of the System.
    */
-  double get_value() const { return m_value; }
+  double get_value() const;
 
   /**
    * Sets the value of the System.
    *
    * @param new_value The new value of the System.
    */
-  void set_value(double new_value) { m_value = new_value; }
+  void set_value(double new_value);
 };

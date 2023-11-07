@@ -14,9 +14,9 @@ public:
   /**
    * Constructor that creates a new Flow.
    */
-  Flow() {}
+  Flow();
 
-  Flow(int id, string title) : m_id(id), m_title(title) {}
+  Flow(int id, string title);
 
   /**
    * Constructor that creates a new Flow.
@@ -26,59 +26,32 @@ public:
    * @param source The source of the Flow.
    * @param target The target of the Flow.
    */
-  Flow(int id, string title, System *source, System *target)
-      : m_id(id), m_title(title), m_source(source), m_target(target) {}
+  Flow(int id, string title, System *source, System *target);
 
   /**
    * Copy constructor that creates a new Flow.
    *
    * @param other The Flow to copy.
    */
-  Flow(const Flow &other) {
-    if (this != &other) {
-      m_id = other.m_id;
-      m_title = other.m_title;
-      m_source = other.m_source;
-      m_target = other.m_target;
-    }
-  }
+  Flow(const Flow &other);
 
-  Flow &operator=(const Flow &other) {
-    if (this != &other) {
-      m_source = other.m_source;
-      m_target = other.m_target;
-    }
-    return *this;
-  }
+  Flow &operator=(const Flow &other);
 
-  virtual ~Flow(){};
+  virtual ~Flow();
 
-  int get_id() const { return m_id; }
+  int get_id() const;
 
-  System *get_source() const { return m_source; }
+  System *get_source() const;
 
-  void set_source(System *source) { m_source = source; }
+  void set_source(System *source);
 
-  System *get_target() const { return m_target; }
+  System *get_target() const;
 
-  void set_target(System *target) { this->m_target = target; }
+  void set_target(System *target);
 
-  bool clear_source() {
-    if (m_source != nullptr) {
-      m_source = nullptr;
-      return true;
-    }
-    return false;
-  }
+  bool clear_source();
 
-  bool clear_target() {
-    if (m_target != nullptr) {
-      m_target = nullptr;
-      return true;
-    }
-
-    return false;
-  }
+  bool clear_target();
 
   virtual double execute() const = 0;
 };
