@@ -16,14 +16,14 @@ private:
   vector<System *> m_systems;
   vector<Flow *> m_flows;
 
+  Model(const Model &other);
+
+  Model &operator=(const Model &other);
+
 public:
   Model();
 
   Model(int id, string title);
-
-  Model(const Model &other);
-
-  Model &operator=(const Model &other);
 
   virtual ~Model();
 
@@ -31,9 +31,13 @@ public:
 
   bool add(Flow *flow);
 
-  vector<System *> get_systems() const;
+  typedef vector<System *>::const_iterator SystemIterator;
+  SystemIterator systems_begin() const;
+  SystemIterator systems_end() const;
 
-  vector<Flow *> get_flows() const;
+  typedef vector<Flow *>::const_iterator FlowIterator;
+  FlowIterator flows_begin() const;
+  FlowIterator flows_end() const;
 
   bool execute(int initial_time, int end_time, int step);
 };

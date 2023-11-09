@@ -16,12 +16,28 @@ Model::Model(const Model &other) {
   }
 }
 
+Model::SystemIterator Model::systems_begin() const { return m_systems.begin(); }
+
+Model::SystemIterator Model::systems_end() const { return m_systems.end(); }
+
+Model::FlowIterator Model::flows_begin() const { return m_flows.begin(); }
+
+Model::FlowIterator Model::flows_end() const { return m_flows.end(); }
+
+// TODO proibir a cópia
 Model &Model::operator=(const Model &other) {
-  if (this != &other) {
-    m_id = other.m_id;
-    m_title = other.m_title;
-    m_systems = other.m_systems;
-    m_flows = other.m_flows;
+  if (this == &other)
+    return *this;
+
+  m_id = other.m_id;
+  m_title = other.m_title;
+
+  for (SystemIterator it = other.systems_begin(); it != other.systems_end();
+       ++it) {
+    add(*it);
+  }
+  for (FlowIterator it = other.flows_begin(); it != other.flows_end(); ++it) {
+    add(*it);
   }
   return *this;
 }
@@ -49,10 +65,6 @@ bool Model::add(Flow *flow) {
   m_flows.push_back(flow);
   return true;
 }
-
-vector<System *> Model::get_systems() const { return m_systems; }
-
-vector<Flow *> Model::get_flows() const { return m_flows; }
 
 bool Model::execute(int initial_time, int end_time, int step) {
   for (int i = initial_time; i < end_time; i += step) {

@@ -13,8 +13,8 @@ void only_one_system() {
   System s1(1, "q1", 0);
   model.add(&s1);
 
-  assert(model.get_systems().size() == 1);
-  assert(model.get_systems()[0] == &s1);
+  Model::SystemIterator system_it = model.systems_begin();
+  assert(*system_it == &s1);
 }
 
 void only_one_flow() {
@@ -22,8 +22,9 @@ void only_one_flow() {
   ExponentialFlow f1(1, "f1");
   model.add(&f1);
 
-  assert(model.get_flows().size() == 1);
-  assert(model.get_flows()[0] == &f1);
+  Model::FlowIterator flow_it = model.flows_begin();
+
+  assert(*flow_it == &f1);
 }
 
 void flow_with_source_without_target() {
@@ -34,7 +35,10 @@ void flow_with_source_without_target() {
   model.add(&f1);
   f1.set_source(&s1);
 
-  assert(model.get_flows()[0]->get_source() == &s1);
+  Model::FlowIterator flow_it = model.flows_begin();
+
+  assert(*flow_it == &f1);
+
   assert(f1.get_source() == &s1);
 }
 
@@ -46,7 +50,10 @@ void flow_without_source_with_target() {
   model.add(&f1);
   f1.set_target(&s1);
 
-  assert(model.get_flows()[0]->get_target() == &s1);
+  Model::FlowIterator flow_it = model.flows_begin();
+
+  assert(*flow_it == &f1);
+
   assert(f1.get_target() == &s1);
 }
 
@@ -61,9 +68,11 @@ void flow_with_source_with_target() {
   f1.set_source(&s1);
   f1.set_target(&s2);
 
-  assert(model.get_flows()[0]->get_source() == &s1);
+  Model::FlowIterator flow_it = model.flows_begin();
+
+  assert(*flow_it == &f1);
+
   assert(f1.get_source() == &s1);
-  assert(model.get_flows()[0]->get_target() == &s2);
   assert(f1.get_target() == &s2);
 }
 
@@ -78,9 +87,13 @@ void two_flows_with_same_source() {
   f1.set_source(&s1);
   f2.set_source(&s1);
 
-  assert(model.get_flows()[0]->get_source() == &s1);
+  Model::FlowIterator flow_it = model.flows_begin();
+
+  assert(*flow_it == &f1);
+  ++flow_it;
+  assert(*flow_it == &f2);
+
   assert(f1.get_source() == &s1);
-  assert(model.get_flows()[1]->get_source() == &s1);
   assert(f2.get_source() == &s1);
 }
 
@@ -95,9 +108,13 @@ void two_flows_with_same_target() {
   f1.set_target(&s1);
   f2.set_target(&s1);
 
-  assert(model.get_flows()[0]->get_target() == &s1);
+  Model::FlowIterator flow_it = model.flows_begin();
+
+  assert(*flow_it == &f1);
+  ++flow_it;
+  assert(*flow_it == &f2);
+
   assert(f1.get_target() == &s1);
-  assert(model.get_flows()[1]->get_target() == &s1);
   assert(f2.get_target() == &s1);
 }
 
@@ -125,15 +142,21 @@ void various_systems_and_flows() {
   f3.set_source(&s1);
   f3.set_target(&s3);
 
-  assert(model.get_systems().size() == 3);
-  assert(model.get_systems()[0] == &s1);
-  assert(model.get_systems()[1] == &s2);
-  assert(model.get_systems()[2] == &s3);
+  Model::SystemIterator system_it = model.systems_begin();
 
-  assert(model.get_flows().size() == 3);
-  assert(model.get_flows()[0] == &f1);
-  assert(model.get_flows()[1] == &f2);
-  assert(model.get_flows()[2] == &f3);
+  assert(*system_it == &s1);
+  ++system_it;
+  assert(*system_it == &s2);
+  ++system_it;
+  assert(*system_it == &s3);
+
+  Model::FlowIterator flow_it = model.flows_begin();
+
+  assert(*flow_it == &f1);
+  ++flow_it;
+  assert(*flow_it == &f2);
+  ++flow_it;
+  assert(*flow_it == &f3);
 }
 
 void cyclic_model() {
@@ -161,15 +184,21 @@ void cyclic_model() {
   f3.set_source(&s3);
   f3.set_target(&s1);
 
-  assert(model.get_systems().size() == 3);
-  assert(model.get_systems()[0] == &s1);
-  assert(model.get_systems()[1] == &s2);
-  assert(model.get_systems()[2] == &s3);
+  Model::SystemIterator system_it = model.systems_begin();
 
-  assert(model.get_flows().size() == 3);
-  assert(model.get_flows()[0] == &f1);
-  assert(model.get_flows()[1] == &f2);
-  assert(model.get_flows()[2] == &f3);
+  assert(*system_it == &s1);
+  ++system_it;
+  assert(*system_it == &s2);
+  ++system_it;
+  assert(*system_it == &s3);
+
+  Model::FlowIterator flow_it = model.flows_begin();
+
+  assert(*flow_it == &f1);
+  ++flow_it;
+  assert(*flow_it == &f2);
+  ++flow_it;
+  assert(*flow_it == &f3);
 
   assert(f1.get_source() == &s1);
   assert(f1.get_target() == &s2);
@@ -226,7 +255,6 @@ void logistical_functional_test() {
 
   model.execute(0, 100, 1);
 
-  // TODO - Fix this test (value * 10000 truncated to int)
   assert(fabs((round((s1.get_value() * 10000)) - 10000 * 88.2167)) < 0.0001);
   assert(fabs((round((s2.get_value() * 10000)) - 10000 * 21.7833)) < 0.0001);
 }
