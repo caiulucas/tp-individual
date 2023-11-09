@@ -11,8 +11,14 @@ Model::Model(const Model &other) {
   if (this != &other) {
     m_id = other.m_id;
     m_title = other.m_title;
-    m_systems = other.m_systems;
-    m_flows = other.m_flows;
+
+    for (SystemIterator it = other.systems_begin(); it != other.systems_end();
+         ++it) {
+      add(*it);
+    }
+    for (FlowIterator it = other.flows_begin(); it != other.flows_end(); ++it) {
+      add(*it);
+    }
   }
 }
 
