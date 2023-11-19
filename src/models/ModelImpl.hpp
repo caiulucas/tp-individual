@@ -55,11 +55,6 @@ public:
   virtual bool add(Flow *flow);
 
   /**
-   * @brief Iterator for accessing systems in the model.
-   */
-  typedef vector<System *>::const_iterator SystemIterator;
-
-  /**
    * @brief Returns an iterator pointing to the beginning of the systems.
    * @return Iterator pointing to the beginning of the systems.
    */
@@ -70,11 +65,6 @@ public:
    * @return Iterator pointing to the end of the systems.
    */
   virtual SystemIterator systems_end() const;
-
-  /**
-   * @brief Iterator for accessing flows in the model.
-   */
-  typedef vector<Flow *>::const_iterator FlowIterator;
 
   /**
    * @brief Returns an iterator pointing to the beginning of the flows.

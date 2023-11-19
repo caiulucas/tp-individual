@@ -50,6 +50,12 @@ public:
   virtual int get_id() const;
 
   /**
+   * @brief Gets the title of the system.
+   * @return The title of the system.
+   */
+  virtual string get_title() const;
+
+  /**
    * @brief Gets the current value of the system.
    * @return The current value of the system.
    */

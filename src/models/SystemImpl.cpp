@@ -26,6 +26,8 @@ SystemImpl::~SystemImpl(){};
 
 int SystemImpl::get_id() const { return m_id; }
 
+string SystemImpl::get_title() const { return m_title; }
+
 double SystemImpl::get_value() const { return m_value; }
 
 void SystemImpl::set_value(double new_value) { m_value = new_value; }
