@@ -3,55 +3,62 @@
 #include "System.hpp"
 #include <string>
 
+/**
+ * @brief Represents a flow in a simulation model.
+ */
 class Flow {
-private:
-  int m_id;
-  string m_title;
-  System *m_source;
-  System *m_target;
 
 public:
   /**
-   * Constructor that creates a new Flow.
+   * @brief Virtual destructor.
    */
-  Flow();
-
-  Flow(int id, string title);
+  virtual ~Flow(){};
 
   /**
-   * Constructor that creates a new Flow.
-   *
-   * @param id The id of the Flow.
-   * @param title The title of the Flow.
-   * @param source The source of the Flow.
-   * @param target The target of the Flow.
+   * @brief Gets the ID of the flow.
+   * @return The ID of the flow.
    */
-  Flow(int id, string title, System *source, System *target);
+  virtual int get_id() const = 0;
 
   /**
-   * Copy constructor that creates a new Flow.
-   *
-   * @param other The Flow to copy.
+   * @brief Gets the source system of the flow.
+   * @return Pointer to the source system.
    */
-  Flow(const Flow &other);
+  virtual System *get_source() const = 0;
 
-  Flow &operator=(const Flow &other);
+  /**
+   * @brief Sets the source system of the flow.
+   * @param source Pointer to the source system.
+   */
+  virtual void set_source(System *source) = 0;
 
-  virtual ~Flow();
+  /**
+   * @brief Gets the target system of the flow.
+   * @return Pointer to the target system.
+   */
+  virtual System *get_target() const = 0;
 
-  int get_id() const;
+  /**
+   * @brief Sets the target system of the flow.
+   * @param target Pointer to the target system.
+   */
+  virtual void set_target(System *target) = 0;
 
-  System *get_source() const;
+  /**
+   * @brief Clears the source system of the flow.
+   * @return True if the source was cleared successfully, false otherwise.
+   */
+  virtual bool clear_source() = 0;
 
-  void set_source(System *source);
+  /**
+   * @brief Clears the target system of the flow.
+   * @return True if the target was cleared successfully, false otherwise.
+   */
+  virtual bool clear_target() = 0;
 
-  System *get_target() const;
-
-  void set_target(System *target);
-
-  bool clear_source();
-
-  bool clear_target();
-
+  /**
+   * @brief Virtual method to execute the flow.
+   * @return The result of the flow execution.
+   */
   virtual double execute() const = 0;
 };

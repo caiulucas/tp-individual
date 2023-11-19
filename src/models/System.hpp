@@ -5,59 +5,31 @@
 
 using namespace std;
 
+/**
+ * @brief Represents a system in a simulation model.
+ */
 class System {
-private:
-  int m_id;
-  string m_title;
-  double m_value;
-
 public:
   /**
-   * Constructor that creates a new System.
+   * @brief Destructor.
    */
-  System();
+  virtual ~System(){};
 
   /**
-   * Constructor that creates a new System.
-   *
-   * @param id The id of the System.
-   * @param title The title of the System.
-   * @param value The value of the System.
+   * @brief Gets the ID of the system.
+   * @return The ID of the system.
    */
-  System(int id, string title, double value);
+  virtual int get_id() const = 0;
 
   /**
-   * Copy constructor that creates a new System.
-   *
-   * @param other The System to copy.
+   * @brief Gets the current value of the system.
+   * @return The current value of the system.
    */
-  System(const System &other);
-  /**
-   * Copy assignment operator that copies a System.
-   *
-   * @param other The System to copy.
-   * @return The copied System.
-   */
-  System &operator=(const System &other);
+  virtual double get_value() const = 0;
 
   /**
-   * Destructor that destroys a System.
+   * @brief Sets a new value for the system.
+   * @param new_value The new value to be set.
    */
-  virtual ~System();
-
-  int get_id() const;
-
-  /**
-   * Gets the id of the System.
-   *
-   * @return The id of the System.
-   */
-  double get_value() const;
-
-  /**
-   * Sets the value of the System.
-   *
-   * @param new_value The new value of the System.
-   */
-  void set_value(double new_value);
+  virtual void set_value(double new_value) = 0;
 };
