@@ -21,6 +21,12 @@ public:
   virtual int get_id() const = 0;
 
   /**
+   * @brief Gets the title of the flow.
+   * @return The title of the flow.
+   */
+  virtual std::string get_title() const = 0;
+
+  /**
    * @brief Gets the source system of the flow.
    * @return Pointer to the source system.
    */

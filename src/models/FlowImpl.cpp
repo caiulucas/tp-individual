@@ -7,19 +7,21 @@ FlowImpl::FlowImpl(int id, string title) : m_id(id), m_title(title) {}
 FlowImpl::FlowImpl(int id, string title, System *source, System *target)
     : m_id(id), m_title(title), m_source(source), m_target(target) {}
 
-FlowImpl::FlowImpl(const FlowImpl &other) {
+FlowImpl::FlowImpl(const Flow &other) {
   if (this != &other) {
-    m_id = other.m_id;
-    m_title = other.m_title;
-    m_source = other.m_source;
-    m_target = other.m_target;
+    m_id = other.get_id();
+    m_title = other.get_title();
+    m_source = other.get_source();
+    m_target = other.get_target();
   }
 }
 
-FlowImpl &FlowImpl::operator=(const FlowImpl &other) {
+FlowImpl &FlowImpl::operator=(const Flow &other) {
   if (this != &other) {
-    m_source = other.m_source;
-    m_target = other.m_target;
+    m_id = other.get_id();
+    m_title = other.get_title();
+    m_source = other.get_source();
+    m_target = other.get_target();
   }
   return *this;
 }
@@ -27,6 +29,8 @@ FlowImpl &FlowImpl::operator=(const FlowImpl &other) {
 FlowImpl::~FlowImpl() {}
 
 int FlowImpl::get_id() const { return m_id; }
+
+string FlowImpl::get_title() const { return m_title; }
 
 System *FlowImpl::get_source() const { return m_source; }
 

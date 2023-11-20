@@ -21,6 +21,18 @@ public:
   virtual ~Model(){};
 
   /**
+   * @brief Returns the ID of the model.
+   * @return The ID of the model.
+   */
+  virtual int get_id() const = 0;
+
+  /**
+   * @brief Returns the title of the model.
+   * @return The title of the model.
+   */
+  virtual string get_title() const = 0;
+
+  /**
    * @brief Adds a system to the model.
    * @param system Pointer to the System object to be added.
    * @return True if the system was added successfully, false otherwise.

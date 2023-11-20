@@ -7,10 +7,10 @@ ModelImpl::ModelImpl() {}
 ModelImpl::ModelImpl(int id, string title)
     : m_id(id), m_title(title), m_systems({}), m_flows({}) {}
 
-ModelImpl::ModelImpl(const ModelImpl &other) {
+ModelImpl::ModelImpl(const Model &other) {
   if (this != &other) {
-    m_id = other.m_id;
-    m_title = other.m_title;
+    m_id = other.get_id();
+    m_title = other.get_title();
 
     for (SystemIterator it = other.systems_begin(); it != other.systems_end();
          ++it) {
@@ -22,12 +22,12 @@ ModelImpl::ModelImpl(const ModelImpl &other) {
   }
 }
 
-ModelImpl &ModelImpl::operator=(const ModelImpl &other) {
+ModelImpl &ModelImpl::operator=(const Model &other) {
   if (this == &other)
     return *this;
 
-  m_id = other.m_id;
-  m_title = other.m_title;
+  m_id = other.get_id();
+  m_title = other.get_title();
   m_systems.clear();
   m_flows.clear();
 
@@ -42,6 +42,10 @@ ModelImpl &ModelImpl::operator=(const ModelImpl &other) {
 }
 
 ModelImpl::~ModelImpl(){};
+
+int ModelImpl::get_id() const { return m_id; }
+
+string ModelImpl::get_title() const { return m_title; }
 
 ModelImpl::SystemIterator ModelImpl::systems_begin() const {
   return m_systems.begin();

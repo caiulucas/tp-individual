@@ -5,11 +5,11 @@ SystemImpl::SystemImpl(){};
 SystemImpl::SystemImpl(int id, string title, double value)
     : m_id(id), m_title(title), m_value(value) {}
 
-SystemImpl::SystemImpl(const SystemImpl &other) {
+SystemImpl::SystemImpl(const System &other) {
   if (this != &other) {
-    m_id = other.m_id;
-    m_title = other.m_title;
-    m_value = other.m_value;
+    m_id = other.get_id();
+    m_title = other.get_title();
+    m_value = other.get_value();
   }
 }
 

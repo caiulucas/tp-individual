@@ -1,20 +1,35 @@
 #include "UnitSystem.hpp"
 #include "../../src/models/SystemImpl.hpp"
 #include <cassert>
+#include <cmath>
 
 void unit_system_constructor() {
-  System *system1 = new SystemImpl();
-  assert(system1->get_id() == 0);
-  assert(system1->get_title() == "");
-  assert(system1->get_value() == 0.0);
+  System *system = new SystemImpl();
+  assert(system->get_id() == 0);
+  assert(system->get_title() == "");
+  assert(fabs((round((system->get_value() * 10000)) - 10000 * 0.0)) < 0.0001);
 
-  System *system2 = new SystemImpl(1, "System 1", 1.0);
-  assert(system2->get_id() == 1);
-  assert(system2->get_title() == "System 1");
-  assert(system2->get_value() == 1.0);
+  delete system;
+}
 
-  delete system1;
-  delete system2;
+void unit_system_constructor_with_fields() {
+  System *system = new SystemImpl(1, "System 1", 1.0);
+  assert(system->get_id() == 1);
+  assert(system->get_title() == "System 1");
+  assert(fabs((round((system->get_value() * 10000)) - 10000 * 1.0)) < 0.0001);
+
+  delete system;
+}
+
+void unit_system_constructor_copy() {
+  System *system = new SystemImpl(1, "System 1", 1.0);
+  System *system_copy = new SystemImpl(*system);
+  assert(system_copy->get_id() == 1);
+  assert(system_copy->get_title() == "System 1");
+  assert(fabs((round((system->get_value() * 10000)) - 10000 * 1.0)) < 0.0001);
+
+  delete system;
+  delete system_copy;
 }
 
 void unit_system_get_id() {
@@ -31,15 +46,25 @@ void unit_system_get_title() {
 
 void unit_system_get_value() {
   System *system = new SystemImpl(1, "System 1", 1.0);
-  assert(system->get_value() == 1.0);
+  assert(fabs((round((system->get_value() * 10000)) - 10000 * 1.0)) < 0.0001);
   delete system;
 }
 
 void unit_system_set_value() {
   System *system = new SystemImpl(1, "System 1", 1.0);
-  assert(system->get_value() == 1.0);
+  assert(fabs((round((system->get_value() * 10000)) - 10000 * 1.0)) < 0.0001);
 
   system->set_value(2.0);
-  assert(system->get_value() == 2.0);
+  assert(fabs((round((system->get_value() * 10000)) - 10000 * 2.0)) < 0.0001);
   delete system;
+}
+
+void run_system_unit_tests() {
+  unit_system_constructor();
+  unit_system_constructor_with_fields();
+  unit_system_constructor_copy();
+  unit_system_get_id();
+  unit_system_get_title();
+  unit_system_get_value();
+  unit_system_set_value();
 }

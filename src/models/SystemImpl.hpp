@@ -29,7 +29,7 @@ public:
    * @brief Copy constructor.
    * @param other The system to be copied.
    */
-  SystemImpl(const SystemImpl &other);
+  SystemImpl(const System &other);
 
   /**
    * @brief Assignment operator.

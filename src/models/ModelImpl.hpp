@@ -15,12 +15,12 @@ private:
   /**
    * @brief Copy constructor (private to prevent unintended usage).
    */
-  ModelImpl(const ModelImpl &other);
+  ModelImpl(const Model &other);
 
   /**
    * @brief Assignment operator (private to prevent unintended usage).
    */
-  ModelImpl &operator=(const ModelImpl &other);
+  ModelImpl &operator=(const Model &other);
 
 public:
   /**
@@ -39,6 +39,18 @@ public:
    * @brief Destructor of the model.
    */
   virtual ~ModelImpl();
+
+  /**
+   * @brief Returns the ID of the model.
+   * @return The ID of the model.
+   */
+  virtual int get_id() const;
+
+  /**
+   * @brief Returns the title of the model.
+   * @return The title of the model.
+   */
+  virtual string get_title() const;
 
   /**
    * @brief Adds a system to the model.

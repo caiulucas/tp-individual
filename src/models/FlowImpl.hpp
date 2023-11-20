@@ -38,14 +38,14 @@ public:
    * @brief Copy constructor.
    * @param other The flow to be copied.
    */
-  FlowImpl(const FlowImpl &other);
+  FlowImpl(const Flow &other);
 
   /**
    * @brief Assignment operator.
    * @param other The flow to be assigned.
    * @return Reference to the assigned flow.
    */
-  FlowImpl &operator=(const FlowImpl &other);
+  FlowImpl &operator=(const Flow &other);
 
   /**
    * @brief Virtual destructor.
@@ -59,9 +59,16 @@ public:
   virtual int get_id() const;
 
   /**
+   * @brief Get the title object
+   * @return The title of the flow.
+   */
+  virtual string get_title() const;
+
+  /**
    * @brief Gets the source system of the flow.
    * @return Pointer to the source system.
    */
+
   virtual System *get_source() const;
 
   /**
