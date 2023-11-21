@@ -1,10 +1,8 @@
 #include "ModelImpl.hpp"
 
-using namespace std;
-
 ModelImpl::ModelImpl() {}
 
-ModelImpl::ModelImpl(int id, string title)
+ModelImpl::ModelImpl(int id, std::string title)
     : m_id(id), m_title(title), m_systems({}), m_flows({}) {}
 
 ModelImpl::ModelImpl(const Model &other) {
@@ -45,7 +43,7 @@ ModelImpl::~ModelImpl(){};
 
 int ModelImpl::get_id() const { return m_id; }
 
-string ModelImpl::get_title() const { return m_title; }
+std::string ModelImpl::get_title() const { return m_title; }
 
 ModelImpl::SystemIterator ModelImpl::systems_begin() const {
   return m_systems.begin();
@@ -83,7 +81,9 @@ bool ModelImpl::add(Flow *flow) {
   return true;
 }
 
-bool ModelImpl::execute(int initial_time, int end_time, int step) const {
+int ModelImpl::execute(int initial_time, int end_time, int step) const {
+  int steps_count = 0;
+
   for (int i = initial_time; i < end_time; i += step) {
     double flows_results[m_flows.size()];
 
@@ -99,7 +99,9 @@ bool ModelImpl::execute(int initial_time, int end_time, int step) const {
       System *target = m_flows[j]->get_target();
       target->set_value(target->get_value() + flows_results[j]);
     }
+
+    steps_count++;
   }
 
-  return true;
+  return steps_count;
 }

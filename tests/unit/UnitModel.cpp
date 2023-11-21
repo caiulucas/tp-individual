@@ -139,7 +139,7 @@ void unit_model_execute() {
   assert(model->add(target));
   assert(model->add(flow));
 
-  model->execute(0, 100, 1);
+  int steps = model->execute(0, 100, 1);
 
   const double expected_source_value = 109.8097;
   const double expected_target_value = 290.1903;
@@ -148,6 +148,7 @@ void unit_model_execute() {
               10000 * expected_source_value) < 0.0001);
   assert(fabs(round((target->get_value() * 10000)) -
               10000 * expected_target_value) < 0.0001);
+  assert(steps == 100);
 
   delete model;
   delete source;

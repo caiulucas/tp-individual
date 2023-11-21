@@ -7,9 +7,9 @@
  */
 class SystemImpl : public System {
 private:
-  int m_id;       ///< The ID of the system.
-  string m_title; ///< The title of the system.
-  double m_value; ///< The value associated with the system.
+  int m_id;            ///< The ID of the system.
+  std::string m_title; ///< The title of the system.
+  double m_value;      ///< The value associated with the system.
 
 public:
   /**
@@ -23,7 +23,7 @@ public:
    * @param title The title of the system.
    * @param value The initial value of the system.
    */
-  SystemImpl(int id, string title, double value);
+  SystemImpl(int id, std::string title, double value);
 
   /**
    * @brief Copy constructor.
@@ -53,7 +53,7 @@ public:
    * @brief Gets the title of the system.
    * @return The title of the system.
    */
-  virtual string get_title() const;
+  virtual std::string get_title() const;
 
   /**
    * @brief Gets the current value of the system.

@@ -2,9 +2,9 @@
 
 FlowImpl::FlowImpl() {}
 
-FlowImpl::FlowImpl(int id, string title) : m_id(id), m_title(title) {}
+FlowImpl::FlowImpl(int id, std::string title) : m_id(id), m_title(title) {}
 
-FlowImpl::FlowImpl(int id, string title, System *source, System *target)
+FlowImpl::FlowImpl(int id, std::string title, System *source, System *target)
     : m_id(id), m_title(title), m_source(source), m_target(target) {}
 
 FlowImpl::FlowImpl(const Flow &other) {
@@ -30,7 +30,7 @@ FlowImpl::~FlowImpl() {}
 
 int FlowImpl::get_id() const { return m_id; }
 
-string FlowImpl::get_title() const { return m_title; }
+std::string FlowImpl::get_title() const { return m_title; }
 
 System *FlowImpl::get_source() const { return m_source; }
 

@@ -1,16 +1,17 @@
 #pragma once
 
 #include "Model.hpp"
+#include <vector>
 
 /**
  * @brief Represents a simulation model.
  */
 class ModelImpl : public Model {
 private:
-  int m_id;                   ///< The ID of the model.
-  string m_title;             ///< The title of the model
-  vector<System *> m_systems; ///< The systems in the model.
-  vector<Flow *> m_flows;     ///< The flows in the model.
+  int m_id;                        ///< The ID of the model.
+  std::string m_title;             ///< The title of the model
+  std::vector<System *> m_systems; ///< The systems in the model.
+  std::vector<Flow *> m_flows;     ///< The flows in the model.
 
   /**
    * @brief Copy constructor (private to prevent unintended usage).
@@ -33,7 +34,7 @@ public:
    * @param id The ID of the model.
    * @param title The title of the model.
    */
-  ModelImpl(int id, string title);
+  ModelImpl(int id, std::string title);
 
   /**
    * @brief Destructor of the model.
@@ -50,7 +51,7 @@ public:
    * @brief Returns the title of the model.
    * @return The title of the model.
    */
-  virtual string get_title() const;
+  virtual std::string get_title() const;
 
   /**
    * @brief Adds a system to the model.
@@ -95,7 +96,7 @@ public:
    * @param initial_time The starting time of the simulation.
    * @param end_time The ending time of the simulation.
    * @param step The time step for the simulation.
-   * @return True if the execution was successful, false otherwise.
+   * @return The number of steps executed.
    */
-  virtual bool execute(int initial_time, int end_time, int step) const;
+  virtual int execute(int initial_time, int end_time, int step) const;
 };

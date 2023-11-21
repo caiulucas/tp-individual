@@ -1,9 +1,6 @@
 #pragma once
 
 #include <string>
-#include <vector>
-
-using namespace std;
 
 /**
  * @brief Represents a system in a simulation model.
@@ -25,7 +22,7 @@ public:
    * @brief Gets the title of the system.
    * @return The title of the system.
    */
-  virtual string get_title() const = 0;
+  virtual std::string get_title() const = 0;
 
   /**
    * @brief Gets the current value of the system.

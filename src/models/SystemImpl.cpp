@@ -2,7 +2,7 @@
 
 SystemImpl::SystemImpl(){};
 
-SystemImpl::SystemImpl(int id, string title, double value)
+SystemImpl::SystemImpl(int id, std::string title, double value)
     : m_id(id), m_title(title), m_value(value) {}
 
 SystemImpl::SystemImpl(const System &other) {
@@ -26,7 +26,7 @@ SystemImpl::~SystemImpl(){};
 
 int SystemImpl::get_id() const { return m_id; }
 
-string SystemImpl::get_title() const { return m_title; }
+std::string SystemImpl::get_title() const { return m_title; }
 
 double SystemImpl::get_value() const { return m_value; }
 

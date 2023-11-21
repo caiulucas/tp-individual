@@ -2,9 +2,9 @@
 
 TestFlow::TestFlow() : FlowImpl() {}
 
-TestFlow::TestFlow(int id, string title) : FlowImpl(id, title) {}
+TestFlow::TestFlow(int id, std::string title) : FlowImpl(id, title) {}
 
-TestFlow::TestFlow(int id, string title, System *source, System *target)
+TestFlow::TestFlow(int id, std::string title, System *source, System *target)
     : FlowImpl(id, title, source, target) {}
 
 TestFlow::TestFlow(Flow &flow) : FlowImpl(flow) {}

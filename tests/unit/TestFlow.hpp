@@ -20,7 +20,7 @@ public:
    * @param id The ID of the TestFlow.
    * @param title The title of the TestFlow.
    */
-  TestFlow(int id, string title);
+  TestFlow(int id, std::string title);
 
   /**
    * @brief Constructor for TestFlow with ID, title, source, and target systems.
@@ -30,7 +30,7 @@ public:
    * @param source The source system for the TestFlow.
    * @param target The target system for the TestFlow.
    */
-  TestFlow(int id, string title, System *source, System *target);
+  TestFlow(int id, std::string title, System *source, System *target);
 
   /**
    * @brief Copy constructor for TestFlow.

@@ -2,12 +2,7 @@
 
 #include "Flow.hpp"
 #include "System.hpp"
-#include <cstddef>
-#include <string>
-#include <typeinfo>
 #include <vector>
-
-using namespace std;
 
 /**
  * @brief Represents a simulation model.
@@ -30,7 +25,7 @@ public:
    * @brief Returns the title of the model.
    * @return The title of the model.
    */
-  virtual string get_title() const = 0;
+  virtual std::string get_title() const = 0;
 
   /**
    * @brief Adds a system to the model.
@@ -49,7 +44,7 @@ public:
   /**
    * @brief Iterator for accessing systems in the model.
    */
-  typedef vector<System *>::const_iterator SystemIterator;
+  typedef std::vector<System *>::const_iterator SystemIterator;
 
   /**
    * @brief Returns an iterator pointing to the beginning of the systems.
@@ -66,7 +61,7 @@ public:
   /**
    * @brief Iterator for accessing flows in the model.
    */
-  typedef vector<Flow *>::const_iterator FlowIterator;
+  typedef std::vector<Flow *>::const_iterator FlowIterator;
 
   /**
    * @brief Returns an iterator pointing to the beginning of the flows.
@@ -85,7 +80,7 @@ public:
    * @param initial_time The starting time of the simulation.
    * @param end_time The ending time of the simulation.
    * @param step The time step for the simulation.
-   * @return True if the execution was successful, false otherwise.
+   * @return The number of steps executed
    */
-  virtual bool execute(int initial_time, int end_time, int step) const = 0;
+  virtual int execute(int initial_time, int end_time, int step) const = 0;
 };

@@ -7,10 +7,10 @@
  */
 class FlowImpl : public Flow {
 private:
-  int m_id;         ///< The ID of the flow.
-  string m_title;   ///< The title of the flow.
-  System *m_source; ///< The source system of the flow.
-  System *m_target; ///< The target system of the flow.
+  int m_id;            ///< The ID of the flow.
+  std::string m_title; ///< The title of the flow.
+  System *m_source;    ///< The source system of the flow.
+  System *m_target;    ///< The target system of the flow.
 
 public:
   /**
@@ -23,7 +23,7 @@ public:
    * @param id The ID of the flow.
    * @param title The title of the flow.
    */
-  FlowImpl(int id, string title);
+  FlowImpl(int id, std::string title);
 
   /**
    * @brief Parameterized constructor with source and target systems.
@@ -32,7 +32,7 @@ public:
    * @param source The source system of the flow.
    * @param target The target system of the flow.
    */
-  FlowImpl(int id, string title, System *source, System *target);
+  FlowImpl(int id, std::string title, System *source, System *target);
 
   /**
    * @brief Copy constructor.
@@ -62,7 +62,7 @@ public:
    * @brief Get the title object
    * @return The title of the flow.
    */
-  virtual string get_title() const;
+  virtual std::string get_title() const;
 
   /**
    * @brief Gets the source system of the flow.

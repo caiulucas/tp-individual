@@ -10,7 +10,7 @@ public:
    * @param id The ID of the logistical flow.
    * @param title The title of the logistical flow.
    */
-  LogisticalFlow(int id, string title);
+  LogisticalFlow(int id, std::string title);
 
   /**
    * @brief Executes the logistical flow.

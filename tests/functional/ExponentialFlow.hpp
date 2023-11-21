@@ -10,7 +10,7 @@ public:
    * @param id The ID of the exponential flow.
    * @param title The title of the exponential flow.
    */
-  ExponentialFlow(int id, string title);
+  ExponentialFlow(int id, std::string title);
 
   /**
    * @brief Executes the exponential flow.
