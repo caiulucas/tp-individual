@@ -2,31 +2,14 @@
 
 #include "Flow.hpp"
 #include "System.hpp"
+#include <type_traits>
 #include <vector>
 
 /**
  * @brief Represents a simulation model.
  */
 class Model {
-
-public:
-  /**
-   * @brief Destructor of the model.
-   */
-  virtual ~Model(){};
-
-  /**
-   * @brief Returns the ID of the model.
-   * @return The ID of the model.
-   */
-  virtual int get_id() const = 0;
-
-  /**
-   * @brief Returns the title of the model.
-   * @return The title of the model.
-   */
-  virtual std::string get_title() const = 0;
-
+protected:
   /**
    * @brief Adds a system to the model.
    * @param system Pointer to the System object to be added.
@@ -40,6 +23,72 @@ public:
    * @return True if the flow was added successfully, false otherwise.
    */
   virtual bool add(Flow *flow) = 0;
+
+public:
+  /**
+   * @brief Destructor of the model.
+   */
+  virtual ~Model(){};
+
+  /**
+   * @brief Returns the title of the model.
+   * @return The title of the model.
+   */
+  virtual std::string get_title() const = 0;
+
+  /**
+   * @brief Create a system object
+   *
+   * @param title The title of the system.
+   * @param value The initial value of the system.
+   * @return System& A System that belongs to this model.
+   */
+  virtual System &create_system(std::string title, double value) = 0;
+
+  /**
+   * @brief Removes a system from the model.
+   * @param system Pointer to the System object to be removed.
+   * @return The confirmation of the removal.
+   */
+  virtual bool remove_system(System *system) = 0;
+
+  /**
+   * @brief Create a flow object
+   *
+   * @param title The title of the flow
+   * @return A Flow that belongs to this model.
+   */
+  template <typename T> T &create_flow(std::string title) {
+    static_assert(std::is_base_of<Flow, T>::value, "T must inherit from Flow");
+
+    T *flow = new T(title);
+    add(flow);
+    return *flow;
+  }
+
+  /**
+   * @brief Create a flow object
+   *
+   * @param title The title of the flow
+   * @param source The source system of the flow.
+   * @param target The target system of the flow.
+   * @return Flow & A Flow that belongs to this model.
+   */
+  template <typename T>
+  T &create_flow(std::string title, System *source, System *target) {
+    static_assert(std::is_base_of<Flow, T>::value, "T must inherit from Flow");
+
+    T *flow = new T(title, source, target);
+    add(flow);
+    return *flow;
+  };
+
+  /**
+   * @brief Removes a flow from the model.
+   * @param flow Pointer to the Flow object to be removed.
+   * @return The confirmation of the removal.
+   */
+  virtual bool remove_flow(Flow *flow) = 0;
 
   /**
    * @brief Iterator for accessing systems in the model.

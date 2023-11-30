@@ -1,13 +1,15 @@
 #include "ModelImpl.hpp"
+#include "Flow.hpp"
+#include "System.hpp"
+#include "SystemImpl.hpp"
 
 ModelImpl::ModelImpl() {}
 
-ModelImpl::ModelImpl(int id, std::string title)
-    : m_id(id), m_title(title), m_systems({}), m_flows({}) {}
+ModelImpl::ModelImpl(std::string title)
+    : m_title(title), m_systems({}), m_flows({}) {}
 
 ModelImpl::ModelImpl(const Model &other) {
   if (this != &other) {
-    m_id = other.get_id();
     m_title = other.get_title();
 
     for (SystemIterator it = other.systems_begin(); it != other.systems_end();
@@ -24,7 +26,6 @@ ModelImpl &ModelImpl::operator=(const Model &other) {
   if (this == &other)
     return *this;
 
-  m_id = other.get_id();
   m_title = other.get_title();
   m_systems.clear();
   m_flows.clear();
@@ -39,11 +40,45 @@ ModelImpl &ModelImpl::operator=(const Model &other) {
   return *this;
 }
 
-ModelImpl::~ModelImpl(){};
-
-int ModelImpl::get_id() const { return m_id; }
+ModelImpl::~ModelImpl() {
+  for (auto it = m_systems.begin(); it != m_systems.end(); ++it) {
+    delete *it;
+  }
+  for (auto it = m_flows.begin(); it != m_flows.end(); ++it) {
+    delete *it;
+  }
+};
 
 std::string ModelImpl::get_title() const { return m_title; }
+
+System &ModelImpl::create_system(std::string title, double value) {
+  System *system = new SystemImpl(title, value);
+  add(system);
+
+  return *system;
+}
+
+bool ModelImpl::remove_system(System *system) {
+  for (auto it = m_systems.begin(); it != m_systems.end(); ++it) {
+    if (*it == system) {
+      m_systems.erase(it);
+      return true;
+    }
+  }
+
+  return false;
+}
+
+bool ModelImpl::remove_flow(Flow *flow) {
+  for (auto it = m_flows.begin(); it != m_flows.end(); ++it) {
+    if (*it == flow) {
+      m_flows.erase(it);
+      return true;
+    }
+  }
+
+  return false;
+}
 
 ModelImpl::SystemIterator ModelImpl::systems_begin() const {
   return m_systems.begin();
@@ -60,23 +95,11 @@ ModelImpl::FlowIterator ModelImpl::flows_begin() const {
 ModelImpl::FlowIterator ModelImpl::flows_end() const { return m_flows.end(); }
 
 bool ModelImpl::add(System *system) {
-  for (System *&s : m_systems) {
-    if (s->get_id() == system->get_id()) {
-      return false;
-    }
-  }
-
   m_systems.push_back(system);
   return true;
 }
 
 bool ModelImpl::add(Flow *flow) {
-  for (Flow *&f : m_flows) {
-    if (f->get_id() == flow->get_id()) {
-      return false;
-    }
-  }
-
   m_flows.push_back(flow);
   return true;
 }

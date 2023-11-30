@@ -7,10 +7,9 @@ class LogisticalFlow : public FlowImpl {
 public:
   /**
    * @brief Constructor for LogisticalFlow.
-   * @param id The ID of the logistical flow.
    * @param title The title of the logistical flow.
    */
-  LogisticalFlow(int id, std::string title);
+  LogisticalFlow(std::string title);
 
   /**
    * @brief Executes the logistical flow.

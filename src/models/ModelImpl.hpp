@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Flow.hpp"
 #include "Model.hpp"
 #include <vector>
 
@@ -8,7 +9,6 @@
  */
 class ModelImpl : public Model {
 private:
-  int m_id;                        ///< The ID of the model.
   std::string m_title;             ///< The title of the model
   std::vector<System *> m_systems; ///< The systems in the model.
   std::vector<Flow *> m_flows;     ///< The flows in the model.
@@ -23,36 +23,7 @@ private:
    */
   ModelImpl &operator=(const Model &other);
 
-public:
-  /**
-   * @brief Default constructor.
-   */
-  ModelImpl();
-
-  /**
-   * @brief Parameterized constructor.
-   * @param id The ID of the model.
-   * @param title The title of the model.
-   */
-  ModelImpl(int id, std::string title);
-
-  /**
-   * @brief Destructor of the model.
-   */
-  virtual ~ModelImpl();
-
-  /**
-   * @brief Returns the ID of the model.
-   * @return The ID of the model.
-   */
-  virtual int get_id() const;
-
-  /**
-   * @brief Returns the title of the model.
-   * @return The title of the model.
-   */
-  virtual std::string get_title() const;
-
+protected:
   /**
    * @brief Adds a system to the model.
    * @param system Pointer to the System object to be added.
@@ -66,6 +37,52 @@ public:
    * @return True if the flow was added successfully, false otherwise.
    */
   virtual bool add(Flow *flow);
+
+public:
+  /**
+   * @brief Default constructor.
+   */
+  ModelImpl();
+
+  /**
+   * @brief Parameterized constructor.
+   * @param title The title of the model.
+   */
+  ModelImpl(std::string title);
+
+  /**
+   * @brief Destructor of the model.
+   */
+  virtual ~ModelImpl();
+
+  /**
+   * @brief Returns the title of the model.
+   * @return The title of the model.
+   */
+  virtual std::string get_title() const;
+
+  /**
+   * @brief Create a system object
+   *
+   * @param title The title of the system.
+   * @param value The initial value of the system.
+   * @return System& A System that belongs to this model.
+   */
+  virtual System &create_system(std::string title, double value);
+
+  /**
+   * @brief Removes a system from the model.
+   * @param system Pointer to the System object to be removed.
+   * @return The confirmation of the removal.
+   */
+  virtual bool remove_system(System *system);
+
+  /**
+   * @brief Removes a flow from the model
+   * @param flow Pointer to the Flow object to be removed.
+   * @return The confirmation of the removal.
+   */
+  virtual bool remove_flow(Flow *flow);
 
   /**
    * @brief Returns an iterator pointing to the beginning of the systems.

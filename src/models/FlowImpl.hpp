@@ -7,7 +7,6 @@
  */
 class FlowImpl : public Flow {
 private:
-  int m_id;            ///< The ID of the flow.
   std::string m_title; ///< The title of the flow.
   System *m_source;    ///< The source system of the flow.
   System *m_target;    ///< The target system of the flow.
@@ -20,19 +19,17 @@ public:
 
   /**
    * @brief Parameterized constructor.
-   * @param id The ID of the flow.
    * @param title The title of the flow.
    */
-  FlowImpl(int id, std::string title);
+  FlowImpl(std::string title);
 
   /**
    * @brief Parameterized constructor with source and target systems.
-   * @param id The ID of the flow.
    * @param title The title of the flow.
    * @param source The source system of the flow.
    * @param target The target system of the flow.
    */
-  FlowImpl(int id, std::string title, System *source, System *target);
+  FlowImpl(std::string title, System *source, System *target);
 
   /**
    * @brief Copy constructor.
@@ -51,12 +48,6 @@ public:
    * @brief Virtual destructor.
    */
   virtual ~FlowImpl();
-
-  /**
-   * @brief Gets the ID of the flow.
-   * @return The ID of the flow.
-   */
-  virtual int get_id() const;
 
   /**
    * @brief Get the title object
@@ -100,10 +91,4 @@ public:
    * @return True if the target was cleared successfully, false otherwise.
    */
   virtual bool clear_target();
-
-  /**
-   * @brief Virtual method to execute the flow.
-   * @return The result of the flow execution.
-   */
-  virtual double execute() const = 0;
 };

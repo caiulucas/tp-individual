@@ -13,12 +13,6 @@ public:
   virtual ~System(){};
 
   /**
-   * @brief Gets the ID of the system.
-   * @return The ID of the system.
-   */
-  virtual int get_id() const = 0;
-
-  /**
    * @brief Gets the title of the system.
    * @return The title of the system.
    */

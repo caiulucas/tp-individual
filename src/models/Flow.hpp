@@ -15,12 +15,6 @@ public:
   virtual ~Flow(){};
 
   /**
-   * @brief Gets the ID of the flow.
-   * @return The ID of the flow.
-   */
-  virtual int get_id() const = 0;
-
-  /**
    * @brief Gets the title of the flow.
    * @return The title of the flow.
    */

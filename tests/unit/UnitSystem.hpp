@@ -28,20 +28,6 @@ void unit_system_constructor_with_fields();
 void unit_system_constructor_copy();
 
 /**
- * @brief Test case for retrieving the ID of a System object.
- *
- * This test verifies the functionality of the get_id() method.
- */
-void unit_system_get_id();
-
-/**
- * @brief Test case for setting the ID of a System object.
- *
- * This test verifies the functionality of the set_id() method.
- */
-void unit_system_set_id();
-
-/**
  * @brief Test case for retrieving the title of a System object.
  *
  * This test verifies the functionality of the get_title() method.

@@ -7,7 +7,6 @@
  */
 class SystemImpl : public System {
 private:
-  int m_id;            ///< The ID of the system.
   std::string m_title; ///< The title of the system.
   double m_value;      ///< The value associated with the system.
 
@@ -18,12 +17,11 @@ public:
   SystemImpl();
 
   /**
-   * @brief Parameterized constructor.
-   * @param id The ID of the system.
+   * @brief Creates a System implementation.
    * @param title The title of the system.
    * @param value The initial value of the system.
    */
-  SystemImpl(int id, std::string title, double value);
+  SystemImpl(std::string title, double value);
 
   /**
    * @brief Copy constructor.
@@ -42,12 +40,6 @@ public:
    * @brief Destructor.
    */
   virtual ~SystemImpl();
-
-  /**
-   * @brief Gets the ID of the system.
-   * @return The ID of the system.
-   */
-  virtual int get_id() const;
 
   /**
    * @brief Gets the title of the system.

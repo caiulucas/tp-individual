@@ -2,12 +2,11 @@
 
 SystemImpl::SystemImpl(){};
 
-SystemImpl::SystemImpl(int id, std::string title, double value)
-    : m_id(id), m_title(title), m_value(value) {}
+SystemImpl::SystemImpl(std::string title, double value)
+    : m_title(title), m_value(value) {}
 
 SystemImpl::SystemImpl(const System &other) {
   if (this != &other) {
-    m_id = other.get_id();
     m_title = other.get_title();
     m_value = other.get_value();
   }
@@ -15,7 +14,6 @@ SystemImpl::SystemImpl(const System &other) {
 
 SystemImpl &SystemImpl::operator=(const SystemImpl &other) {
   if (this != &other) {
-    m_id = other.m_id;
     m_title = other.m_title;
     m_value = other.m_value;
   }
@@ -23,8 +21,6 @@ SystemImpl &SystemImpl::operator=(const SystemImpl &other) {
 }
 
 SystemImpl::~SystemImpl(){};
-
-int SystemImpl::get_id() const { return m_id; }
 
 std::string SystemImpl::get_title() const { return m_title; }
 
