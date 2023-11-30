@@ -11,8 +11,7 @@ void exponential_functional_test() {
   Model *model = new ModelImpl("model_1");
   System &s1 = model->create_system("pop1", 100.0);
   System &s2 = model->create_system("pop2", 0.0);
-  ExponentialFlow &f1 =
-      model->create_flow<ExponentialFlow>("Exponencial", &s1, &s2);
+  Flow &f1 = model->create_flow<ExponentialFlow>("Exponencial", &s1, &s2);
 
   model->execute(0, 100, 1);
 
@@ -26,7 +25,7 @@ void logistical_functional_test() {
   Model *model = new ModelImpl("model_1");
   System &s1 = model->create_system("pop1", 100.0);
   System &s2 = model->create_system("pop2", 10.0);
-  LogisticalFlow &f1 = model->create_flow<LogisticalFlow>("Logístico");
+  Flow &f1 = model->create_flow<LogisticalFlow>("Logístico");
 
   f1.set_source(&s1);
   f1.set_target(&s2);
@@ -47,12 +46,12 @@ void complex_functional_test() {
   System &q4 = model->create_system("q4", 0.0);
   System &q5 = model->create_system("q5", 0.0);
 
-  ExponentialFlow &f = model->create_flow<ExponentialFlow>("f", &q1, &q2);
-  ExponentialFlow &t = model->create_flow<ExponentialFlow>("t", &q2, &q3);
-  ExponentialFlow &u = model->create_flow<ExponentialFlow>("u", &q3, &q4);
-  ExponentialFlow &v = model->create_flow<ExponentialFlow>("v", &q4, &q1);
-  ExponentialFlow &g = model->create_flow<ExponentialFlow>("g", &q1, &q3);
-  ExponentialFlow &r = model->create_flow<ExponentialFlow>("r", &q2, &q5);
+  Flow &f = model->create_flow<ExponentialFlow>("f", &q1, &q2);
+  Flow &t = model->create_flow<ExponentialFlow>("t", &q2, &q3);
+  Flow &u = model->create_flow<ExponentialFlow>("u", &q3, &q4);
+  Flow &v = model->create_flow<ExponentialFlow>("v", &q4, &q1);
+  Flow &g = model->create_flow<ExponentialFlow>("g", &q1, &q3);
+  Flow &r = model->create_flow<ExponentialFlow>("r", &q2, &q5);
 
   model->execute(0, 100, 1);
 

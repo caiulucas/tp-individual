@@ -58,7 +58,7 @@ public:
    * @param title The title of the flow
    * @return A Flow that belongs to this model.
    */
-  template <typename T> T &create_flow(std::string title) {
+  template <typename T> Flow &create_flow(std::string title) {
     static_assert(std::is_base_of<Flow, T>::value, "T must inherit from Flow");
 
     T *flow = new T(title);
@@ -75,7 +75,7 @@ public:
    * @return Flow & A Flow that belongs to this model.
    */
   template <typename T>
-  T &create_flow(std::string title, System *source, System *target) {
+  Flow &create_flow(std::string title, System *source, System *target) {
     static_assert(std::is_base_of<Flow, T>::value, "T must inherit from Flow");
 
     T *flow = new T(title, source, target);
