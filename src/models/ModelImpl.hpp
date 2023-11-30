@@ -9,36 +9,11 @@
  */
 class ModelImpl : public Model {
 private:
-  std::string m_title;             ///< The title of the model
-  std::vector<System *> m_systems; ///< The systems in the model.
-  std::vector<Flow *> m_flows;     ///< The flows in the model.
+  std::string m_title;                  ///< The title of the model
+  std::vector<System *> m_systems;      ///< The systems in the model.
+  std::vector<Flow *> m_flows;          ///< The flows in the model.
+  static std::vector<Model *> m_models; ///< The models of the application.
 
-  /**
-   * @brief Copy constructor (private to prevent unintended usage).
-   */
-  ModelImpl(const Model &other);
-
-  /**
-   * @brief Assignment operator (private to prevent unintended usage).
-   */
-  ModelImpl &operator=(const Model &other);
-
-protected:
-  /**
-   * @brief Adds a system to the model.
-   * @param system Pointer to the System object to be added.
-   * @return True if the system was added successfully, false otherwise.
-   */
-  virtual bool add(System *system);
-
-  /**
-   * @brief Adds a flow to the model.
-   * @param flow Pointer to the Flow object to be added.
-   * @return True if the flow was added successfully, false otherwise.
-   */
-  virtual bool add(Flow *flow);
-
-public:
   /**
    * @brief Default constructor.
    */
@@ -51,15 +26,56 @@ public:
   ModelImpl(std::string title);
 
   /**
+   * @brief Copy constructor (private to prevent unintended usage).
+   */
+  ModelImpl(const Model &other);
+
+  /**
    * @brief Destructor of the model.
    */
   virtual ~ModelImpl();
 
   /**
+   * @brief Assignment operator (private to prevent unintended usage).
+   */
+  ModelImpl &operator=(const Model &other);
+
+  /**
+   * @brief Adds a model to the application.
+   * @param model Pointer to the Model object to be added.
+   * @return True if the model was added successfully, false otherwise.
+   */
+  static bool add(Model *model);
+
+  /**
+   * @brief Adds a system to the model.
+   * @param system Pointer to the System object to be added.
+   * @return True if the system was added successfully, false otherwise.
+   */
+  virtual bool add(System *system);
+
+protected:
+  /**
+   * @brief Adds a flow to the model.
+   * @param flow Pointer to the Flow object to be added.
+   * @return True if the flow was added successfully, false otherwise.
+   */
+  virtual bool add(Flow *flow);
+
+public:
+  /**
    * @brief Returns the title of the model.
    * @return The title of the model.
    */
   virtual std::string get_title() const;
+
+  /**
+   * @brief Create a model object and add it to the list of models.
+   *
+   * @param title The title of the model.
+   * @return Model& A Model object.
+   */
+  static Model &create_model(std::string title);
 
   /**
    * @brief Create a system object

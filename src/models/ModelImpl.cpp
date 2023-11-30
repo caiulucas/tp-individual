@@ -3,6 +3,8 @@
 #include "System.hpp"
 #include "SystemImpl.hpp"
 
+std::vector<Model *> ModelImpl::m_models;
+
 ModelImpl::ModelImpl() {}
 
 ModelImpl::ModelImpl(std::string title)
@@ -50,6 +52,13 @@ ModelImpl::~ModelImpl() {
 };
 
 std::string ModelImpl::get_title() const { return m_title; }
+
+Model &ModelImpl::create_model(std::string title) {
+  Model *model = new ModelImpl(title);
+  add(model);
+
+  return *model;
+}
 
 System &ModelImpl::create_system(std::string title, double value) {
   System *system = new SystemImpl(title, value);
@@ -104,6 +113,12 @@ bool ModelImpl::add(Flow *flow) {
   return true;
 }
 
+bool ModelImpl::add(Model *model) {
+  m_models.push_back(model);
+
+  return true;
+}
+
 int ModelImpl::execute(int initial_time, int end_time, int step) const {
   int steps_count = 0;
 
@@ -127,4 +142,8 @@ int ModelImpl::execute(int initial_time, int end_time, int step) const {
   }
 
   return steps_count;
+}
+
+Model &Model::create_model(std::string title) {
+  return ModelImpl::create_model(title);
 }

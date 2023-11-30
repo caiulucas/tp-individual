@@ -11,18 +11,18 @@
 class Model {
 protected:
   /**
-   * @brief Adds a system to the model.
-   * @param system Pointer to the System object to be added.
-   * @return True if the system was added successfully, false otherwise.
-   */
-  virtual bool add(System *system) = 0;
-
-  /**
    * @brief Adds a flow to the model.
    * @param flow Pointer to the Flow object to be added.
    * @return True if the flow was added successfully, false otherwise.
    */
   virtual bool add(Flow *flow) = 0;
+
+  /**
+   * @brief Adds a model to the application.
+   * @param model Pointer to the Model object to be added.
+   * @return True if the model was added successfully, false otherwise.
+   */
+  static bool add(Model *model);
 
 public:
   /**
@@ -35,6 +35,14 @@ public:
    * @return The title of the model.
    */
   virtual std::string get_title() const = 0;
+
+  /**
+   * @brief Create a model object
+   *
+   * @param title The title of the model.
+   * @return Model& A Model that belongs to this model.
+   */
+  static Model &create_model(std::string title);
 
   /**
    * @brief Create a system object
