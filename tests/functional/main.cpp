@@ -16,6 +16,8 @@ void exponential_functional_test() {
 
   assert(fabs((round((s1.get_value() * 10000)) - 10000 * 36.6032)) < 0.0001);
   assert(fabs((round((s2.get_value() * 10000)) - 10000 * 63.3968)) < 0.0001);
+
+  delete &model;
 }
 
 void logistical_functional_test() {
@@ -31,6 +33,8 @@ void logistical_functional_test() {
 
   assert(fabs((round((s1.get_value() * 10000)) - 10000 * 88.2167)) < 0.0001);
   assert(fabs((round((s2.get_value() * 10000)) - 10000 * 21.7833)) < 0.0001);
+
+  delete &model;
 }
 
 void complex_functional_test() {
@@ -55,6 +59,8 @@ void complex_functional_test() {
   assert(fabs((round((q3.get_value() * 10000)) - 10000 * 77.1143)) < 0.0001);
   assert(fabs((round((q4.get_value() * 10000)) - 10000 * 56.1728)) < 0.0001);
   assert(fabs((round((q5.get_value() * 10000)) - 10000 * 16.4612)) < 0.0001);
+
+  delete &model;
 }
 
 int main() {

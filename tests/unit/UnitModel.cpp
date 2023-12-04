@@ -8,11 +8,15 @@ void unit_model_constructor() {
   assert(model.get_title() == "Model 1");
   assert(model.systems_begin() == model.systems_end());
   assert(model.flows_begin() == model.flows_end());
+
+  delete &model;
 }
 
 void unit_model_get_title() {
   Model &model = Model::create_model("Model 1");
   assert(model.get_title() == "Model 1");
+
+  delete &model;
 }
 
 void unit_model_add_system() {
@@ -20,6 +24,8 @@ void unit_model_add_system() {
   System &system = model.create_system("System 1", 1.0);
 
   assert(model.systems_begin() != model.systems_end());
+
+  delete &model;
 }
 
 void unit_model_remove_system() {
@@ -29,6 +35,8 @@ void unit_model_remove_system() {
   assert(model.systems_begin() != model.systems_end());
   model.remove_system(&system);
   assert(model.systems_begin() == model.systems_end());
+
+  delete &model;
 }
 
 void unit_model_add_flow() {
@@ -38,6 +46,8 @@ void unit_model_add_flow() {
   Flow &flow = model.create_flow<TestFlow>("Flow 1", &source, &target);
 
   assert(model.flows_begin() != model.flows_end());
+
+  delete &model;
 }
 
 void unit_model_remove_flow() {
@@ -49,6 +59,8 @@ void unit_model_remove_flow() {
   assert(model.flows_begin() != model.flows_end());
   model.remove_flow(&flow);
   assert(model.flows_begin() == model.flows_end());
+
+  delete &model;
 }
 
 void unit_model_systems_begin() {
@@ -58,6 +70,8 @@ void unit_model_systems_begin() {
   assert(model.systems_begin() != model.systems_end());
   assert((*model.systems_begin())->get_title() == "System 1");
   assert((*model.systems_begin())->get_value() == 1.0);
+
+  delete &model;
 }
 
 void unit_model_systems_end() {
@@ -66,6 +80,8 @@ void unit_model_systems_end() {
 
   assert(model.systems_begin() != model.systems_end());
   assert(++model.systems_begin() == model.systems_end());
+
+  delete &model;
 }
 
 void unit_model_flows_begin() {
@@ -74,6 +90,8 @@ void unit_model_flows_begin() {
 
   assert(model.flows_begin() != model.flows_end());
   assert((*model.flows_begin())->get_title() == "Flow 1");
+
+  delete &model;
 }
 
 void unit_model_flows_end() {
@@ -82,6 +100,8 @@ void unit_model_flows_end() {
 
   assert(model.flows_begin() != model.flows_end());
   assert(++model.flows_begin() == model.flows_end());
+
+  delete &model;
 }
 
 void unit_model_execute() {
@@ -92,6 +112,8 @@ void unit_model_execute() {
   int steps = model.execute(initial_time, end_time, 1);
 
   assert(steps == (end_time - initial_time));
+
+  delete &model;
 }
 
 void run_model_unit_tests() {
