@@ -1,5 +1,5 @@
 #include "UnitFlow.hpp"
-#include "../../src/models/SystemImpl.hpp"
+#include "../../src/models/SystemBody.hpp"
 #include "TestFlow.hpp"
 #include <cassert>
 #include <cmath>
@@ -19,8 +19,8 @@ void unit_flow_constructor_with_id_and_title() {
 }
 
 void unit_flow_constructor_with_all_fields() {
-  System *source = new SystemImpl("Source", 1.0);
-  System *target = new SystemImpl("Target", 1.0);
+  System *source = new SystemBody("Source", 1.0);
+  System *target = new SystemBody("Target", 1.0);
 
   Flow *flow = new TestFlow("Flow 1", source, target);
 
@@ -34,8 +34,8 @@ void unit_flow_constructor_with_all_fields() {
 }
 
 void unit_flow_constructor_copy() {
-  System *source = new SystemImpl("Source", 1.0);
-  System *target = new SystemImpl("Target", 1.0);
+  System *source = new SystemBody("Source", 1.0);
+  System *target = new SystemBody("Target", 1.0);
 
   Flow *flow = new TestFlow("Flow 1", source, target);
   Flow *flow_copy = new TestFlow(*flow);
@@ -57,8 +57,8 @@ void unit_flow_get_title() {
 }
 
 void unit_flow_get_source() {
-  System *source = new SystemImpl("Source", 1.0);
-  System *target = new SystemImpl("Target", 1.0);
+  System *source = new SystemBody("Source", 1.0);
+  System *target = new SystemBody("Target", 1.0);
 
   Flow *flow = new TestFlow("Flow 1", source, target);
 
@@ -70,14 +70,14 @@ void unit_flow_get_source() {
 }
 
 void unit_flow_set_source() {
-  System *source = new SystemImpl("Source", 1.0);
-  System *target = new SystemImpl("Target", 1.0);
+  System *source = new SystemBody("Source", 1.0);
+  System *target = new SystemBody("Target", 1.0);
 
   Flow *flow = new TestFlow("Flow 1", source, target);
 
   assert(flow->get_source() == source);
 
-  System *new_source = new SystemImpl("New Source", 1.0);
+  System *new_source = new SystemBody("New Source", 1.0);
   flow->set_source(new_source);
 
   assert(flow->get_source() == new_source);
@@ -89,8 +89,8 @@ void unit_flow_set_source() {
 }
 
 void unit_flow_clear_source() {
-  System *source = new SystemImpl("Source", 1.0);
-  System *target = new SystemImpl("Target", 1.0);
+  System *source = new SystemBody("Source", 1.0);
+  System *target = new SystemBody("Target", 1.0);
 
   Flow *flow = new TestFlow("Flow 1", source, target);
 
@@ -107,8 +107,8 @@ void unit_flow_clear_source() {
 }
 
 void unit_flow_get_target() {
-  System *source = new SystemImpl("Source", 1.0);
-  System *target = new SystemImpl("Target", 1.0);
+  System *source = new SystemBody("Source", 1.0);
+  System *target = new SystemBody("Target", 1.0);
 
   Flow *flow = new TestFlow("Flow 1", source, target);
 
@@ -120,14 +120,14 @@ void unit_flow_get_target() {
 }
 
 void unit_flow_set_target() {
-  System *source = new SystemImpl("Source", 1.0);
-  System *target = new SystemImpl("Target", 1.0);
+  System *source = new SystemBody("Source", 1.0);
+  System *target = new SystemBody("Target", 1.0);
 
   Flow *flow = new TestFlow("Flow 1", source, target);
 
   assert(flow->get_target() == target);
 
-  System *new_target = new SystemImpl("New Target", 1.0);
+  System *new_target = new SystemBody("New Target", 1.0);
   flow->set_target(new_target);
 
   assert(flow->get_target() == new_target);
@@ -139,8 +139,8 @@ void unit_flow_set_target() {
 }
 
 void unit_flow_clear_target() {
-  System *source = new SystemImpl("Source", 1.0);
-  System *target = new SystemImpl("Target", 1.0);
+  System *source = new SystemBody("Source", 1.0);
+  System *target = new SystemBody("Target", 1.0);
 
   Flow *flow = new TestFlow("Flow 1", source, target);
 
@@ -157,8 +157,8 @@ void unit_flow_clear_target() {
 }
 
 void unit_flow_execute() {
-  System *source = new SystemImpl("Source", 10.1);
-  System *target = new SystemImpl("Target", 200.0);
+  System *source = new SystemBody("Source", 10.1);
+  System *target = new SystemBody("Target", 200.0);
 
   Flow *flow = new TestFlow("Flow 1", source, target);
 

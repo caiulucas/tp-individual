@@ -19,6 +19,12 @@ public:
   virtual std::string get_title() const = 0;
 
   /**
+   * @brief Sets a new title for the system.
+   * @param new_title The new title to be set.
+   */
+  virtual void set_title(std::string new_title) = 0;
+
+  /**
    * @brief Gets the current value of the system.
    * @return The current value of the system.
    */

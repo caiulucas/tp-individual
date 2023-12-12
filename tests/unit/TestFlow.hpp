@@ -1,12 +1,12 @@
-#include "../../src/models/FlowImpl.hpp"
+#include "../../src/models/FlowBody.hpp"
 
 /**
- * @brief TestFlow class derived from FlowImpl.
+ * @brief TestFlow class derived from FlowBody.
  *
- * This class extends the functionality of FlowImpl and is used for testing
+ * This class extends the functionality of FlowBody and is used for testing
  * purposes.
  */
-class TestFlow : public FlowImpl {
+class TestFlow : public FlowBody {
 
 public:
   /**

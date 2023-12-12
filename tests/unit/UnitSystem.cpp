@@ -1,10 +1,10 @@
 #include "UnitSystem.hpp"
-#include "../../src/models/SystemImpl.hpp"
+#include "../../src/models/SystemBody.hpp"
 #include <cassert>
 #include <cmath>
 
 void unit_system_constructor() {
-  System *system = new SystemImpl();
+  System *system = new SystemBody();
   assert(system->get_title() == "");
   assert(fabs((round((system->get_value() * 10000)) - 10000 * 0.0)) < 0.0001);
 
@@ -12,7 +12,7 @@ void unit_system_constructor() {
 }
 
 void unit_system_constructor_with_fields() {
-  System *system = new SystemImpl("System 1", 1.0);
+  System *system = new SystemBody("System 1", 1.0);
   assert(system->get_title() == "System 1");
   assert(fabs((round((system->get_value() * 10000)) - 10000 * 1.0)) < 0.0001);
 
@@ -20,8 +20,8 @@ void unit_system_constructor_with_fields() {
 }
 
 void unit_system_constructor_copy() {
-  System *system = new SystemImpl("System 1", 1.0);
-  System *system_copy = new SystemImpl(*system);
+  System *system = new SystemBody("System 1", 1.0);
+  System *system_copy = new SystemBody(*system);
   assert(system_copy->get_title() == "System 1");
   assert(fabs((round((system->get_value() * 10000)) - 10000 * 1.0)) < 0.0001);
 
@@ -30,19 +30,19 @@ void unit_system_constructor_copy() {
 }
 
 void unit_system_get_title() {
-  System *system = new SystemImpl("System 1", 1.0);
+  System *system = new SystemBody("System 1", 1.0);
   assert(system->get_title() == "System 1");
   delete system;
 }
 
 void unit_system_get_value() {
-  System *system = new SystemImpl("System 1", 1.0);
+  System *system = new SystemBody("System 1", 1.0);
   assert(fabs((round((system->get_value() * 10000)) - 10000 * 1.0)) < 0.0001);
   delete system;
 }
 
 void unit_system_set_value() {
-  System *system = new SystemImpl("System 1", 1.0);
+  System *system = new SystemBody("System 1", 1.0);
   assert(fabs((round((system->get_value() * 10000)) - 10000 * 1.0)) < 0.0001);
 
   system->set_value(2.0);

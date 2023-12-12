@@ -1,9 +1,9 @@
-#include "../../src/models/FlowImpl.hpp"
+#include "../../src/models/FlowBody.hpp"
 
 /**
  * @brief Represents an exponential flow in a simulation model.
  */
-class ExponentialFlow : public FlowImpl {
+class ExponentialFlow : public FlowBody {
 public:
   /**
    * @brief Constructor for ExponentialFlow.

@@ -1,6 +1,6 @@
 #include "LogisticalFlow.hpp"
 
-LogisticalFlow::LogisticalFlow(std::string title) : FlowImpl(title) {}
+LogisticalFlow::LogisticalFlow(std::string title) : FlowBody(title) {}
 
 double LogisticalFlow::execute() const {
   double value = get_target()->get_value();

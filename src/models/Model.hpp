@@ -132,6 +132,20 @@ public:
    */
   virtual FlowIterator flows_end() const = 0;
 
+  typedef std::vector<Model *>::const_iterator ModelIterator;
+
+  /**
+   * @brief Returns an iterator pointing to the beginning of the models.
+   * @return Iterator pointing to the beginning of the models.
+   */
+  virtual ModelIterator models_begin() const = 0;
+
+  /**
+   * @brief Returns an iterator pointing to the end of the models.
+   * @return Iterator pointing to the end of the models.
+   */
+  virtual ModelIterator models_end() const = 0;
+
   /**
    * @brief Executes the model within the specified time range.
    * @param initial_time The starting time of the simulation.

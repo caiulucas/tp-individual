@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Body.hpp"
 #include "Flow.hpp"
 #include "Model.hpp"
 #include <vector>
@@ -7,7 +8,7 @@
 /**
  * @brief Represents a simulation model.
  */
-class ModelImpl : public Model {
+class ModelBody : public Model, public Body {
 private:
   std::string m_title;                  ///< The title of the model
   std::vector<System *> m_systems;      ///< The systems in the model.
@@ -17,28 +18,28 @@ private:
   /**
    * @brief Default constructor.
    */
-  ModelImpl();
+  ModelBody();
 
   /**
    * @brief Parameterized constructor.
    * @param title The title of the model.
    */
-  ModelImpl(std::string title);
+  ModelBody(std::string title);
 
   /**
    * @brief Copy constructor (private to prevent unintended usage).
    */
-  ModelImpl(const Model &other);
+  ModelBody(const Model &other);
 
   /**
    * @brief Destructor of the model.
    */
-  virtual ~ModelImpl();
+  virtual ~ModelBody();
 
   /**
    * @brief Assignment operator (private to prevent unintended usage).
    */
-  ModelImpl &operator=(const Model &other);
+  ModelBody &operator=(const Model &other);
 
   /**
    * @brief Adds a model to the application.
@@ -68,6 +69,12 @@ public:
    * @return The title of the model.
    */
   virtual std::string get_title() const;
+
+  /**
+   * @brief Sets the title of the model.
+   * @param title The new title of the model.
+   */
+  virtual void set_title(const std::string &title);
 
   /**
    * @brief Create a model object and add it to the list of models.
@@ -101,6 +108,13 @@ public:
   virtual bool remove_flow(Flow *flow);
 
   /**
+   * @brief Removes a model from the application.
+   * @param model Pointer to the Model object to be removed.
+   * @return The confirmation of the removal.
+   */
+  static bool remove_model(Model *model);
+
+  /**
    * @brief Returns an iterator pointing to the beginning of the systems.
    * @return Iterator pointing to the beginning of the systems.
    */
@@ -123,6 +137,18 @@ public:
    * @return Iterator pointing to the end of the flows.
    */
   virtual FlowIterator flows_end() const;
+
+  /**
+   * @brief Returns an iterator pointing to the beginning of the models.
+   * @return ModelIterator
+   */
+  virtual ModelIterator models_begin() const;
+
+  /**
+   * @brief Returns an iterator pointing to the end of the models.
+   * @return ModelIterator
+   */
+  virtual ModelIterator models_end() const;
 
   /**
    * @brief Executes the model within the specified time range.

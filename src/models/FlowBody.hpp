@@ -1,11 +1,12 @@
 #pragma once
 
+#include "Body.hpp"
 #include "Flow.hpp"
 
 /**
  * @brief Represents a flow in a simulation model.
  */
-class FlowImpl : public Flow {
+class FlowBody : public Flow, public Body {
 private:
   std::string m_title; ///< The title of the flow.
   System *m_source;    ///< The source system of the flow.
@@ -15,13 +16,13 @@ public:
   /**
    * @brief Default constructor.
    */
-  FlowImpl();
+  FlowBody();
 
   /**
    * @brief Parameterized constructor.
    * @param title The title of the flow.
    */
-  FlowImpl(std::string title);
+  FlowBody(std::string title);
 
   /**
    * @brief Parameterized constructor with source and target systems.
@@ -29,25 +30,25 @@ public:
    * @param source The source system of the flow.
    * @param target The target system of the flow.
    */
-  FlowImpl(std::string title, System *source, System *target);
+  FlowBody(std::string title, System *source, System *target);
 
   /**
    * @brief Copy constructor.
    * @param other The flow to be copied.
    */
-  FlowImpl(const Flow &other);
+  FlowBody(const Flow &other);
 
   /**
    * @brief Assignment operator.
    * @param other The flow to be assigned.
    * @return Reference to the assigned flow.
    */
-  FlowImpl &operator=(const Flow &other);
+  FlowBody &operator=(const Flow &other);
 
   /**
    * @brief Virtual destructor.
    */
-  virtual ~FlowImpl();
+  virtual ~FlowBody();
 
   /**
    * @brief Get the title object

@@ -2,6 +2,7 @@
 #include "../../src/models/Model.hpp"
 #include "TestFlow.hpp"
 #include <cassert>
+#include <cstdio>
 
 void unit_model_constructor() {
   Model &model = Model::create_model("Model 1");
@@ -68,8 +69,7 @@ void unit_model_systems_begin() {
   System &system = model.create_system("System 1", 1.0);
 
   assert(model.systems_begin() != model.systems_end());
-  assert((*model.systems_begin())->get_title() == "System 1");
-  assert((*model.systems_begin())->get_value() == 1.0);
+  assert((*model.systems_begin()) == &system);
 
   delete &model;
 }

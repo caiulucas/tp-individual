@@ -1,9 +1,9 @@
-#include "../../src/models/FlowImpl.hpp"
+#include "../../src/models/FlowBody.hpp"
 
 /**
  * @brief Represents a logistical flow in a simulation model.
  */
-class LogisticalFlow : public FlowImpl {
+class LogisticalFlow : public FlowBody {
 public:
   /**
    * @brief Constructor for LogisticalFlow.
